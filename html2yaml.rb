@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'nokogiri'
 
 filename = ARGV[0]
@@ -24,4 +26,19 @@ text = bible_text
 		.gsub(/^\s/, "")
 		.gsub(/^[0-9]+/, "- ")
 
-print(text)
+text << "\n"
+
+last   = ""
+output = ""
+
+text.each_line { |line|
+	if /^-/ =~ line
+		output << last
+	else
+		output << last.chomp
+	end
+
+	last = line
+}
+
+print(output)
