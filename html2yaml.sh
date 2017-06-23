@@ -27,3 +27,5 @@ for x in $(find nwt1984html -type f)
 do
 	html2yaml ${x}
 done
+
+exit
